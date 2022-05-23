@@ -1,13 +1,7 @@
 ﻿@model List<PacchettoViaggio>
-
+<link href="~/css/site.css" rel="stylesheet"/>
 <!--tabella per amministratori webapp-->
 
-@if(Model.Count() == 0)
-{
-    <h3 class="text-white">Non ci sono Pizze nell'elenco</h3>
-}
-else
-{
     <div class="container">
         <div class="row">
             <table class="table table-striped">
@@ -24,19 +18,20 @@ else
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
                         @foreach (PacchettoViaggio PacchettiDellaLista in Model)
                         {
-                            <th scope="row">@PacchettiDellaLista.Id</th>
-                            <td>@PacchettiDellaLista.Destinazione</td>
-                            <td>@PacchettiDellaLista.NumerOspiti</td>
-                            <td>@PacchettiDellaLista.StelleHotel</td>
-                            <td>@PacchettiDellaLista.TipoPensione</td>
-                            <td>@PacchettiDellaLista.Prezzo</td>
+                            <tr>
+                                <th scope="row">@PacchettiDellaLista.Id</th>
+                                <td><img src="@PacchettiDellaLista.Immagine" alt="@PacchettiDellaLista.Destinazione" class="img-fluid h-25"/></td>
+                                <td>@PacchettiDellaLista.Destinazione</td>
+                                <td>@PacchettiDellaLista.NumerOspiti</td>
+                                <td>@PacchettiDellaLista.StelleHotel</td>
+                                <td>@PacchettiDellaLista.TipoPensione</td>
+                                <td>@PacchettiDellaLista.Prezzo</td>
+                            </tr>
                         }
-                    </tr>
+                    
                 </tbody>
                 </table>
         </div>
     </div>
-}
