@@ -1,8 +1,12 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Travel_Agency.Models
 {
-    public class PacchettoViaggi
+    [Table("PacchettoViaggio")]
+    [Index(nameof(Id), IsUnique = true)]
+    public class PacchettoViaggio
     {
         [Key]
         public int Id { get; set; }
@@ -30,12 +34,11 @@ namespace Travel_Agency.Models
         [Required(ErrorMessage = "Il prezzo è obbligatorio")]
         public double Prezzo { get; set; }
 
-        public PacchettoViaggi()
+        public PacchettoViaggio()
         {
-
         }
 
-        public PacchettoViaggi(string Immagine, string Destinazione, string TipoPensione, int StelleHotel, int NumerOspiti, double Prezzo)
+        public PacchettoViaggio(string Immagine, string Destinazione, string TipoPensione, int StelleHotel, int NumerOspiti, double Prezzo)
         {
             this.Immagine = Immagine;
             this.Destinazione = Destinazione;
