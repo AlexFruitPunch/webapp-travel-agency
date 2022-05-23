@@ -2,9 +2,9 @@
 
 <div class="container">
 	<div class="row">
-		<div class="col-12 text-center">
-			<div class="card box-shadow bg-body img-fluid h-100">
-				<img src="@Model.Immagine" class="card-img-top" alt="@Model.Destinazione" class="card-img-top">
+		<div class="col-4">
+			<div class="card box-shadow bg-body mt-5">
+				<img src="@Model.Immagine" class="card-img-top h-100" alt="@Model.Destinazione" class="card-img-top">
 				<div class="card-body fs-6 p-0">
 					<h4 class="text-center my-3">@Model.Destinazione</h4>
 					<ul>
@@ -20,6 +20,9 @@
 							}
 						</li>
 					</ul>
+				<div class="card-footer">
+					<p class="text-center">€ @Model.Prezzo</p>
+				</div>
 				</divc>
 			</div>
 		</div>

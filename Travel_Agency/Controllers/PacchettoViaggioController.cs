@@ -45,7 +45,7 @@ namespace Travel_Agency.Controllers
                 }
             }
         }
-
+        /*
         [HttpGet]
         public IActionResult Create()
         {
@@ -154,6 +154,6 @@ namespace Travel_Agency.Controllers
                     return NotFound();
                 }
             }
-        }
+        }*/
     }
 }
