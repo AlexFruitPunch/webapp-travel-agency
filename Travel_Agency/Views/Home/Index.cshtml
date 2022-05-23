@@ -1,45 +1,42 @@
-﻿<!--tabella per amministratori webapp-->
+﻿@model List<PacchettoViaggio>
 
-<table class="table table-striped">
-  <thead>
-    <tr>
-    <!--nomi delle varie colonne-->
-      <th scope="col">id</th>
-      <th scope="col">Immagine</th>
-      <th scope="col">Destinazione</th>
-      <th scope="col">Numero Ospiti</th>
-      <th scope="col">Stelle Hotel</th>
-      <th scope="col">Tipologia Pensione</th>
-      <th scope="col">Prezzo</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>mdo</td>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>mdo</td>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>mdo</td>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>mdo</td>
-    </tr>
-  </tbody>
-</table>
+<!--tabella per amministratori webapp-->
+
+@if(Model.Count() == 0)
+{
+    <h3 class="text-white">Non ci sono Pizze nell'elenco</h3>
+}
+else
+{
+    <div class="container">
+        <div class="row">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <!--nomi delle varie colonne-->
+                <th scope="col">id</th>
+                        <th scope="col">Immagine</th>
+                        <th scope="col">Destinazione</th>
+                        <th scope="col">Numero Ospiti</th>
+                        <th scope="col">Stelle Hotel</th>
+                        <th scope="col">Tipologia Pensione</th>
+                        <th scope="col">Prezzo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        @foreach (PacchettoViaggio PacchettiDellaLista in Model)
+                        {
+                            <th scope="row">@PacchettiDellaLista.Id</th>
+                            <td>@PacchettiDellaLista.Destinazione</td>
+                            <td>@PacchettiDellaLista.NumerOspiti</td>
+                            <td>@PacchettiDellaLista.StelleHotel</td>
+                            <td>@PacchettiDellaLista.TipoPensione</td>
+                            <td>@PacchettiDellaLista.Prezzo</td>
+                        }
+                    </tr>
+                </tbody>
+                </table>
+        </div>
+    </div>
+}

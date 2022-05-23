@@ -5,7 +5,7 @@ namespace Travel_Agency.Database
 {
     public class TravelAgencyContext : DbContext
     {
-        public DbSet<PacchettoViaggio>? Pizze { get; set; }
+        public DbSet<PacchettoViaggio>? PacchettiViaggio { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
