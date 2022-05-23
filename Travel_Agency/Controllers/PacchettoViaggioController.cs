@@ -45,33 +45,33 @@ namespace Travel_Agency.Controllers
                 }
             }
         }
-        /*
+        
         [HttpGet]
         public IActionResult Create()
         {
-            return View("CreatePizza");
+            return View("CreatePacchetto");
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Pizza nuovaPizza)
+        public IActionResult Create(PacchettoViaggio nuovoPacchetto)
         {
             if (!ModelState.IsValid)
             {
-                return View("CreatePizza", nuovaPizza);
+                return View("CreatePizza", nuovoPacchetto);
             }
 
-            using (PizzaContext db = new PizzaContext())
+            using (TravelAgencyContext db = new TravelAgencyContext())
             {
-                Pizza pizzaDaCreare = new Pizza(nuovaPizza.Nome, nuovaPizza.Ingredienti, nuovaPizza.Immagine, nuovaPizza.Prezzo);
+                PacchettoViaggio pacchettoDaCreare = new PacchettoViaggio(nuovoPacchetto.Immagine, nuovoPacchetto.Destinazione, nuovoPacchetto.TipoPensione, nuovoPacchetto.StelleHotel, nuovoPacchetto.NumerOspiti, nuovoPacchetto.Prezzo);
 
-                db.Pizze.Add(pizzaDaCreare);
+                db.Add(pacchettoDaCreare);
                 db.SaveChanges();
             }
 
-            return RedirectToAction("ListinoPizze");
+            return RedirectToAction("index");
         }
-
+        /*
         [HttpGet]
         public IActionResult Aggiorna(int id)
         {

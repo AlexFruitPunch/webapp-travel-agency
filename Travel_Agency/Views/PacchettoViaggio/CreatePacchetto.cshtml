@@ -1,0 +1,40 @@
+﻿@model PacchettoViaggio
+
+<div class="container">
+	<form method="post" action="@Url.Action("Create","PacchettoViaggio")">
+	@Html.AntiForgeryToken()
+	<div class="mb-3 mt-5">
+		<strong class="text-dark">immagine(url) 300x300-px:</strong>
+		<input asp-for="Immagine" class="d-block w-100" />
+		<span asp-validation-for="Immagine" class="text-danger"></span>
+	</div>
+	<div class="mb-3">
+		<strong class="text-dark">Destinazione Pacchetto Vacanze:</strong>
+		<input asp-for="Destinazione" class="d-block w-100" />
+		<span asp-validation-for="Destinazione" class="text-danger"></span>
+	</div>
+	<div class="mb-3">
+		<strong class="text-dark">Numero Ospiti Pacchetto:</strong>
+		<input asp-for="NumerOspiti" class="d-block w-100" />
+		<span asp-validation-for="NumerOspiti" class="text-danger"></span>
+	</div>
+	<div class="mb-3">
+		<strong class="text-dark">Stelle Hotel Pacchetto:</strong>
+		<input asp-for="StelleHotel" class="d-block w-100"/>
+		<span asp-validation-for="StelleHotel" class="text-danger"></span>
+	</div>
+	<div class="mb-3">
+		<strong class="text-dark">Tipologia Pensione(Solo Colazione/Mezza Pensione/Pensione Completa):</strong>
+		<input asp-for="TipoPensione" class="d-block w-100"/>
+		<span asp-validation-for="TipoPensione" class="text-danger"></span>
+	</div>
+	<div class="mb-3">
+		<strong class="text-dark">Prezzo:</strong>
+		<input asp-for="Prezzo" class="d-block w-100"/>
+		<span asp-validation-for="Prezzo" class="text-danger"></span>
+	</div>
+	<div class="text-end">
+		<input type="submit" class="btn btn-small btn-info mb-3" value="Salva">
+	</div>
+	</form>
+</div>
