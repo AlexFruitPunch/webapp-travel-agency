@@ -92,7 +92,7 @@ namespace Travel_Agency.Controllers
             }
             else
             {
-                return View("PacchettoDaModificare", pacchettoDaModificare);
+                return View("AggiornaPacchetto", pacchettoDaModificare);
             }
         }
 
@@ -102,7 +102,7 @@ namespace Travel_Agency.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View("Aggiorna", modello);
+                return View("AggiornaPacchetto", modello);
             }
 
             PacchettoViaggio pacchettoDaModificare = null;
@@ -125,7 +125,7 @@ namespace Travel_Agency.Controllers
 
                     db.SaveChanges();
 
-                    return RedirectToAction("ListinoPizze");
+                    return RedirectToAction("index");
                 }
                 else
                 {
@@ -149,7 +149,7 @@ namespace Travel_Agency.Controllers
                     db.PacchettiViaggio.Remove(pizzaDaCancellare);
                     db.SaveChanges();
 
-                    return RedirectToAction("ListinoPizze");
+                    return RedirectToAction("index");
                 }
                 else
                 {
