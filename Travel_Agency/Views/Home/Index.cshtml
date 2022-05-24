@@ -1,0 +1,56 @@
+﻿<div class="container">
+	<div class="row">
+		<div class="col-12">
+			<div class="d-flex justify-content-between align-items-center">
+				<h1 class="mt-3 mb-3">Lista di Pacchetti</h1>
+			</div>
+		</div>
+	</div>
+	<div class="row js-no-post text-center d-none">
+		<div class="col-12">
+			<h3>Non hai inserito alcun pacchetto viaggio</h3>
+		</div>
+	</div>
+	<div class="row js_post_table">
+		<!-- qui verranno mostrati gli elementi-->
+	</div>
+</div>
+
+@section Scripts {
+
+	<script type="text/javascript">
+		function LoadPacchetti(){
+			axios.get('/api/PacchettiViaggio/Get').then((result) => {
+
+				//codice che verrà eseguito	quando arriverano i dati della mia web api
+				console.log("Ho ricevuto i miei pacchetti viaggio")
+
+				if( result.data.length == 0 ){
+					//si accede ai codici con classe js_post_table e si aggiunge la classe d-none se non ci sono elementi 
+					document.querySelector('.js_post_table').classList.add('d-none')
+				}else{
+					document.querySelector('.js-no-post').classList.add('d-none')
+
+					result.data.forEach(PacchettoViaggio => {
+						//con .innerHTML si accede dentro
+						document.querySelector('.js_post_table').innerHTML += 
+
+						//template literal = `   permette di accedere ai campi senza dover comporre la stringa a mano 
+
+						`
+						<div class="card" style="width: 18rem;">
+						  <img class="card-img-top" src="..." alt="Card image cap">
+						  <div class="card-body">
+							<h5 class="card-title">Card title</h5>
+							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+							<a href="#" class="btn btn-primary">Go somewhere</a>
+						  </div>
+						</div>
+						`
+					})
+				}
+			}
+			)
+		}
+	</script>
+}
