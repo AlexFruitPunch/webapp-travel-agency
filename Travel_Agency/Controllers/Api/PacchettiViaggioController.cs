@@ -4,8 +4,8 @@ using Travel_Agency.Models;
 
 namespace Travel_Agency.Controllers.Api
 {
-    [ApiController]
     [Route("api/[controller]/[action]")]
+    [ApiController]
     public class PacchettiViaggioController : ControllerBase
     {
         [HttpGet]

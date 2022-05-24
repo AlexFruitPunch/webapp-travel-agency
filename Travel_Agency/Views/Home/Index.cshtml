@@ -2,7 +2,7 @@
 	<div class="row">
 		<!--barra di ricerca-->
 		<div class="col-12">
-			<form asp-controller="PacchettoViaggio" asp-action="Index" method="get">
+			<form asp-controller="PacchettiViaggio" asp-action="Index" method="get">
 				<p class="mt-4">
 					<input type="text" name="StringaRicerca"/>
 					<input type="submit" value="Cerca"/>
@@ -11,10 +11,23 @@
 		</div>
 
 		<!--Sezione elementi Corpo della webapp-->
+		<!--Scritta Lista Pacchetti-->
 		<div class="col-12">
 			<div class="d-flex justify-content-between align-items-center">
 				<h1 class="mt-3 mb-3">Lista di Pacchetti</h1>
 			</div>
+		</div>
+	</div>
+	<div id="post-wait" class="row text-center">
+		<div class="col-12 align-content-lg-center my-5">
+			<!--Scritta animata per il caricamento-->
+			<div class="loader">
+				<div class="ball"></div>
+				<div class="ball"></div>
+				<div class="ball"></div>
+				<span>Caricamento...</span>
+			</div>
+
 		</div>
 	</div>
 	<div class="row js-no-post text-center">
@@ -22,7 +35,7 @@
 			<h3>Non hai inserito alcun pacchetto viaggio</h3>
 		</div>
 	</div>
-	<div class="row js_post_cards">
+	<div id="post-div" class="row js_post_cards">
 		<!-- qui verranno mostrati gli elementi-->
 	</div>
 </div>
@@ -43,9 +56,12 @@
 				console.log("Ho ricevuto i miei pacchetti viaggio")
 
 				if( result.data.length == 0 ){
+					document.getElementById('post-wait').classList.add('d-none');
+
 					//si accede ai codici con classe js_post_table e si aggiunge la classe d-none se non ci sono elementi 
-					document.querySelector('.js_post_cards').classList.add('d-none')
+					document.getElementById('post-div').classList.remove('d-none');
 				}else{
+					document.getElementById('post-wait').classList.add('d-none');
 					document.querySelector('.js-no-post').classList.add('d-none')
 
 					result.data.forEach(PacchettoViaggio => {

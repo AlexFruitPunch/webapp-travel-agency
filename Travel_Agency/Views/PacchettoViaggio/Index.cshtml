@@ -4,6 +4,16 @@
 
     <div class="container">
         <div class="row">
+		<!--barra di ricerca-->
+		<div class="col-12">
+			<form asp-controller="PacchettoViaggio" asp-action="Index" method="get">
+				<p class="mt-4">
+					<input type="text" name="StringaRicerca"/>
+					<input type="submit" value="Cerca"/>
+				</p>
+			</form>
+		</div>
+        <div class="row">
             <div class="col">
                 <a href="@Url.Action("Create","PacchettoViaggio")" class="btn btn-success my-4">Aggiungi</a>
             </div>
