@@ -7,13 +7,25 @@ namespace Travel_Agency.Controllers
     public class PacchettoViaggioController : Controller
     {
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(string StringaRicerca)
         {
+
             List<PacchettoViaggio> Pacchettiviaggio = new List<PacchettoViaggio>();
+
+            //Logia per la ricerca di una stringa nel database
 
             using (TravelAgencyContext db = new TravelAgencyContext())
             {
-                Pacchettiviaggio = db.PacchettiViaggio.ToList();
+
+                if (StringaRicerca != null)
+                {
+                    Pacchettiviaggio = db.PacchettiViaggio
+                        .Where(PacchettoViaggio => PacchettoViaggio.Destinazione.Contains(StringaRicerca) || PacchettoViaggio.TipoPensione.Contains(StringaRicerca)).ToList<PacchettoViaggio>();
+                }
+                else
+                {
+                    Pacchettiviaggio = db.PacchettiViaggio.ToList<PacchettoViaggio>();
+                }
             }
                 return View("Index", Pacchettiviaggio);
         }
@@ -29,7 +41,7 @@ namespace Travel_Agency.Controllers
                 {
 
                     pacchettoTrovato = db.PacchettiViaggio
-                          .Where(Pizza => Pizza.Id == id)
+                          .Where(PacchettoViaggio => PacchettoViaggio.Id == id)
                           .First();
 
                     return View("DettaglioPacchetto", pacchettoTrovato);
@@ -58,7 +70,7 @@ namespace Travel_Agency.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View("CreatePizza", nuovoPacchetto);
+                return View("CreatePacchetto", nuovoPacchetto);
             }
 
             using (TravelAgencyContext db = new TravelAgencyContext())

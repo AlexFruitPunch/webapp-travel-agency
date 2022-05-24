@@ -6,7 +6,7 @@ namespace Travel_Agency.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Index(string SearchString)
         {
             return View();
         }
