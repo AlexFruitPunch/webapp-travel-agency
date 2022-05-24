@@ -6,12 +6,12 @@
 			</div>
 		</div>
 	</div>
-	<div class="row js-no-post text-center d-none">
+	<div class="row js-no-post text-center">
 		<div class="col-12">
 			<h3>Non hai inserito alcun pacchetto viaggio</h3>
 		</div>
 	</div>
-	<div class="row js_post_table">
+	<div class="row js_post_cards">
 		<!-- qui verranno mostrati gli elementi-->
 	</div>
 </div>
@@ -19,7 +19,13 @@
 @section Scripts {
 
 	<script type="text/javascript">
-		function LoadPacchetti(){
+
+		//richiamo la funzione
+		CaricaPacchetti();
+
+
+		//Dichiaro la funzione
+		function CaricaPacchetti(){
 			axios.get('/api/PacchettiViaggio/Get').then((result) => {
 
 				//codice che verrà eseguito	quando arriverano i dati della mia web api
@@ -27,30 +33,36 @@
 
 				if( result.data.length == 0 ){
 					//si accede ai codici con classe js_post_table e si aggiunge la classe d-none se non ci sono elementi 
-					document.querySelector('.js_post_table').classList.add('d-none')
+					document.querySelector('.js_post_cards').classList.add('d-none')
 				}else{
 					document.querySelector('.js-no-post').classList.add('d-none')
 
 					result.data.forEach(PacchettoViaggio => {
 						//con .innerHTML si accede dentro
-						document.querySelector('.js_post_table').innerHTML += 
+						document.querySelector('.js_post_cards').innerHTML += 
 
 						//template literal = `   permette di accedere ai campi senza dover comporre la stringa a mano 
 
 						`
-						<div class="card" style="width: 18rem;">
-						  <img class="card-img-top" src="..." alt="Card image cap">
-						  <div class="card-body">
-							<h5 class="card-title">Card title</h5>
-							<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-							<a href="#" class="btn btn-primary">Go somewhere</a>
-						  </div>
+						<div class="col-12 col-md-4 p-2">
+							<div class="card">
+								<img class="card-img-top" src="${PacchettoViaggio.Immagine}" alt="${PacchettoViaggio.Destinazione}">
+								<div class="card-body">
+									<h5 class="card-title">Destinazione: ${PacchettoViaggio.Destinazione}</h5>
+									<p class="card-text">Pensione: ${PacchettoViaggio.TipoPensione}</p>
+									<p class="card-text">Ospiti: ${PacchettoViaggio.NumerOspiti}</p>
+									<p class="card-text">Stelle Hotel: ${PacchettoViaggio.StelleHotel} </p>
+									<a href="#" class="btn btn-primary">Go somewhere</a>
+								</div>
+							</div>
 						</div>
 						`
-					})
+					});
 				}
 			}
-			)
+			).cath((error) => {
+				console.log("c'è stato un errore: " + error);
+			});
 		}
 	</script>
 }
