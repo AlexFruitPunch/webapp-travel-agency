@@ -71,55 +71,57 @@ namespace Travel_Agency.Controllers
 
             return RedirectToAction("index");
         }
-        /*
+        
         [HttpGet]
         public IActionResult Aggiorna(int id)
         {
-            Pizza pizzaDaModificare = null;
+            PacchettoViaggio pacchettoDaModificare = null;
 
-            using (PizzaContext db = new PizzaContext())
+            using (TravelAgencyContext db = new TravelAgencyContext())
             {
 
                 //stesso modo di fare le query rispetto a prima ma usando le query classiche di SQL e non entity Framework
-                pizzaDaModificare = (from pizza in db.Pizze
-                                     where pizza.Id == id
-                                     select pizza).First();
+                pacchettoDaModificare = (from PacchettoViaggio in db.PacchettiViaggio
+                                     where PacchettoViaggio.Id == id
+                                     select PacchettoViaggio).First();
             }
 
-            if (pizzaDaModificare == null)
+            if (pacchettoDaModificare == null)
             {
                 return NotFound();
             }
             else
             {
-                return View("PizzaDaModificare", pizzaDaModificare);
+                return View("PacchettoDaModificare", pacchettoDaModificare);
             }
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Aggiorna(int id, Pizza modello)
+        public IActionResult Aggiorna(int id, PacchettoViaggio modello)
         {
             if (!ModelState.IsValid)
             {
                 return View("Aggiorna", modello);
             }
 
-            Pizza pizzaDaModificare = null;
+            PacchettoViaggio pacchettoDaModificare = null;
 
-            using (PizzaContext db = new PizzaContext())
+            using (TravelAgencyContext db = new TravelAgencyContext())
             {
-                pizzaDaModificare = db.Pizze
+                pacchettoDaModificare = db.PacchettiViaggio
                       .Where(Pizza => Pizza.Id == id)
                       .First();
 
-                if (pizzaDaModificare != null)
+                if (pacchettoDaModificare != null)
                 {
                     //aggiorniamo i campi con i nuovi valori
-                    pizzaDaModificare.Nome = modello.Nome;
-                    pizzaDaModificare.Ingredienti = modello.Ingredienti;
-                    pizzaDaModificare.Immagine = modello.Immagine;
-                    pizzaDaModificare.Prezzo = modello.Prezzo;
+                    pacchettoDaModificare.Destinazione = modello.Destinazione;
+                    pacchettoDaModificare.TipoPensione = modello.TipoPensione;
+                    pacchettoDaModificare.StelleHotel = modello.StelleHotel;
+                    pacchettoDaModificare.NumerOspiti = modello.NumerOspiti;
+                    pacchettoDaModificare.Immagine = modello.Immagine;
+                    pacchettoDaModificare.Prezzo = modello.Prezzo;
 
                     db.SaveChanges();
 
@@ -131,20 +133,20 @@ namespace Travel_Agency.Controllers
                 }
             }
         }
-
+        
         [HttpPost]
         public IActionResult Cancella(int id)
         {
-            Pizza? pizzaDaCancellare = null;
+            PacchettoViaggio? pizzaDaCancellare = null;
 
-            using (PizzaContext db = new PizzaContext())
+            using (TravelAgencyContext db = new TravelAgencyContext())
             {
-                pizzaDaCancellare = db.Pizze
+                pizzaDaCancellare = db.PacchettiViaggio
                       .Where(Pizza => Pizza.Id == id)
                       .FirstOrDefault();
                 if (pizzaDaCancellare != null)
                 {
-                    db.Pizze.Remove(pizzaDaCancellare);
+                    db.PacchettiViaggio.Remove(pizzaDaCancellare);
                     db.SaveChanges();
 
                     return RedirectToAction("ListinoPizze");
@@ -154,6 +156,6 @@ namespace Travel_Agency.Controllers
                     return NotFound();
                 }
             }
-        }*/
+        }
     }
 }
